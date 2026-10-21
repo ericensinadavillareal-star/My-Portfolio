@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <style>
+        /* ================= REQUIRED CSS STYLING ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Menu & Flexbox */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #2c3e50;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            border-bottom: 3px solid #1abc9c;
+        }
+
+        .logo {
+            font-size: 1.5rem; 
+            font-weight: bold;/
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        /* Hover effect */
+        nav ul li a:hover {
+            color: #1abc9c;
+        }
+
+        /* Sections Layout */
+        section {
+            padding: 100px 10% 50px 10%; /* Padding */
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* 1. HOME SECTION */
+        #home {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), #2c3e50;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Border-radius */
+            border: 4px solid #1abc9c;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #1abc9c;
+            margin-top: 10px;
+        }
+
+        /* 2. ABOUT ME & TABLES */
+        .about-box, .content-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px; /* Table padding */
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        /* 3. MY SKILLS */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background-color: #ffffff;
+            padding: 15px 25px;
+            border-radius: 5px;
+            border-left: 5px solid #1abc9c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px);
+            background-color: #1abc9c;
+            color: white;
+        }
+
+        /* 4. MY PROJECTS */
+        .projects-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e1e1e1;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        /* 7. CONTACT ME & FORMS */
+        fieldset {
+            border: 2px solid #2c3e50;
+            border-radius: 6px;
+            padding: 20px;
+            background: #ffffff;
+        }
+
+        legend {
+            font-weight: bold;
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="number"],
+        input[type="color"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #16a085;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION MENU -->
+    <header>
+        <div class="logo">My Portfolio</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. HOME SECTION -->
+    <section id="home">
+        <img src="addimage.jpg" alt="Profile Picture" class="profile-img">
+        <h1>ERIC E. VILLAREAL</h1>
+        <p class="tagline">"Life is too short, enjoy every moment."</p>
+        <p style="margin-top: 10px;">Welcome to my official digital portfolio website! Hi! I'm Eric E. Villareal, 20 years old, and a 2nd-year ACT/IT student. I'm an extroverted and friendly person who dislikes making anyone feel left out when they're around me. I'm very observant and enjoy various physical activities like sports, singing, and more, because as they say, 'life is too short.' I want to explore and enjoy my life, especially while I'm young, because I know how cruel this world can be. I'm also business-minded—I've tried running various small businesses and doing online buy-and-sell to afford the things I want.</p>
+    </section>
+
+    <!-- 2. ABOUT ME SECTION (Using Table structure from lesson) -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-box">
+            <table>
+                <caption>Student Academic Profile</caption>
+                <tr>
+                    <th>Course / Program:BSIT</th>
+                    <td>Bachelor of Science in Information Technology</td>
+                </tr>
+                <tr>
+                    <th>School:DCSA</th>
+                    <td>Datamex Colloge Saint Adeline</td>
+                </tr>
+                <tr>
+                    <th>Hobbies & Interests:</th>
+                    <td>Coding, Buy and sell, Physical Activities, Singing, Playing Instruments.</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- 3. MY SKILLS SECTION -->
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-tag">HTML codes</div>
+            <div class="skill-tag">Basic repairing phones</div>
+            <div class="skill-tag">Playing Billiards</div>
+            <div class="skill-tag">Calisthenics</div>
+            <div class="skill-tag">Boxing</div>
+        </div>
+    </section>
+
+    <!-- 4. MY PROJECTS SECTION -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <img src="c:\Users\CLienT\Downloads\Image2.jpg" alt="Project Screenshot">
+                <div class="project-content">
+                    <h3>Login Form</h3>
+                    <p>This login form features input fields for Email and Password, along with a 'Log In' button, serving as the user authentication interface across various platforms.</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <img src="c:\Users\CLienT\Downloads\Image3.jpg" alt="Project Screenshot">
+                <div class="project-content">
+                    <h3>Registration Form</h3>
+                    <p>A complete registration form. It is used to collect necessary information from a new user, such as User ID, Password, Name, Address, Country, ZIP CODE, Email, Sex, Language, and a short self-description "About".</p>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card">
+                <img src="c:\Users\CLienT\Downloads\Image4.jpg" alt="Project Screenshot">
+                <div class="project-content">
+                    <h3>Ordered List and Unordered List</h3>
+                    <p>Ordered list and Unordered list are basic HTML codes used to display information such as your daily routine and favorite foods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ACHIEVEMENTS & 6. GOALS -->
+    <section id="achievements">
+        <h2>Achievements & Goals</h2>
+        <div class="content-box">
+            <h3>Achievements</h3>
+            <ul style="margin-left: 20px; margin-top: 10px; margin-bottom: 20px;">
+                <li>I Successfully completed the HTML Tables, Login Form and registration Forms.</li>
+                <li>I also learned how to use Python, Oracle, Database, and VB.NET.</li>
+            </ul>
+            <h3 id="goals">Goals</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>My goal right now is to develop and further refine my current skills as an ACT student, and to explore.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT ME SECTION (Using lesson Form, Fieldset, Legend, and Input types) -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="content-box" style="max-width: 600px; margin: 0 auto;">
+            <form action="action_page.php" method="post" autocomplete="on">
+                <fieldset>
+                    <legend>Fill up</legend>
+                    
+                    <label>Full Name:</label>
+                    <input type="text" name="fullname" autofocus required placeholder="Enter your name">
+
+                    <label>Email Address:</label>
+                    <input type="email" name="email" required placeholder="name@example.com">
+
+                    <label>Date of Inquiry:</label>
+                    <input type="date" name="inquiry_date">
+
+                    <label>Message:</label>
+                    <textarea name="message" rows="4" placeholder="Type your message here..." required></textarea>
+
+                    <input type="submit" value="Send Message">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Eric E. Villareal. Personal Portfolio Project.</p>
+    </footer>
+
+</body>
+</html>
